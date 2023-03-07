@@ -95,7 +95,7 @@ class GFAlertVC: UIViewController {
         ])
         
     }
-    @objc func dismissVC() {
+    @objc override func dismissVC() {
         dismiss(animated: true)
     }
 

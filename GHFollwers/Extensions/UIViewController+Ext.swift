@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 extension UIViewController {
     func presentGFAlertOnMainThread(title: String,message:String,buttonTitle: String) {
@@ -21,5 +22,14 @@ extension UIViewController {
         let emptyStateView = GFEmtyStateView(message: message)
         emptyStateView.frame = view.bounds
         view.addSubview(emptyStateView)
+    }
+    // safari penceresi aç
+    func presentSafariVC(with url: URL) {
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.preferredControlTintColor = .systemGreen
+        present(safariVC, animated: true)
+    }
+    @objc func dismissVC() {
+        dismiss(animated: true)
     }
 }
