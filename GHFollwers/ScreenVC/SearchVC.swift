@@ -11,6 +11,7 @@ class SearchVC: UIViewController {
     let logoImageView = UIImageView()
     let usernameTextField = GFTextField()
     let callToActionButton = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
+    //var logoImageViewTopConstraint: NSLayoutConstraint
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLogoImageView()
@@ -21,6 +22,7 @@ class SearchVC: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        usernameTextField.text = ""
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
@@ -30,9 +32,10 @@ class SearchVC: UIViewController {
     }
     @objc func pushFollowerListVC() {
         if !usernameTextField.text!.isNilOrEmpty {
-            let followerListVC = FollowerListVC()
-            followerListVC.username = usernameTextField.text
-            followerListVC.title = usernameTextField.text
+            
+            usernameTextField.resignFirstResponder()
+            let followerListVC =  FollowerListVC(username: usernameTextField.text!)
+            
             navigationController?.pushViewController(followerListVC, animated: true)
         } else {
             presentGFAlertOnMainThread(title: "Emty Username", message: "Please enter a username. We need to know who to look for 😀", buttonTitle: "Ok")
@@ -44,7 +47,7 @@ class SearchVC: UIViewController {
     func configureLogoImageView() {
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.image = UIImage(named: "gh-logo")
+        logoImageView.image = Images.ghLogo
         
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),

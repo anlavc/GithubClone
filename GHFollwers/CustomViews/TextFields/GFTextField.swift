@@ -34,6 +34,7 @@ class GFTextField: UITextField {
         backgroundColor = .tertiarySystemBackground
         autocorrectionType = .no
         returnKeyType = .go // klavyeye git butonu ekler . delegate eklemek gerekir
+        clearButtonMode = .whileEditing
         placeholder = "Enter a username"
         
     }
